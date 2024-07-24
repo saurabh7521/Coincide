@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Jul 24 09:52:41 2024
+# Process ID: 7276
+# Current directory: C:/Saved Documents/Coincide/Coincide.runs/impl_1
+# Command line: vivado.exe -log au_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source au_top.tcl -notrace
+# Log file: C:/Saved Documents/Coincide/Coincide.runs/impl_1/au_top.vdi
+# Journal file: C:/Saved Documents/Coincide/Coincide.runs/impl_1\vivado.jou
+# Running On        :McCook2-22302
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz
+# CPU Frequency     :3408 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :17053 MB
+# Swap memory       :2550 MB
+# Total Virtual     :19603 MB
+# Available Virtual :6006 MB
+#-----------------------------------------------------------
+source au_top.tcl -notrace
