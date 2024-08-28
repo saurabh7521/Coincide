@@ -44,14 +44,13 @@ The au_top module instantiates timer, reset_conditioner, duplciator, uart_tx, an
 The raw input is first sent to the **duplicator** module by the au_top module. The duplciator sends the raw input to the pipeline, which cleans the input and outputs a "conditioned" signal that is synchronized with the FPGA clock. The dueplicator then sends this to the edge_detector that detects if the input has the transiiton from 0 to 1, if so, then the edge_detector outputs a high signal for one clock cycle. The duplicator takes this output from edge_detector and duplicates the signal for a specified number of clock cycles. This duplicated output is the final output signal of the duplicated module. 
 
 The outputs of the duplicator is taken, bitmasked and then sent to the **comparator**. The comparator gives a high signal for one clock cycle if all the signals given to it are high.
-
 Once this high signal is detected, an up-counter is incremented by one. This is the counter that counts the pulses as well as the coincidence. To count the coincidence of two pulses, send those two pulses together in the comparator. The current comparator takes four inputs. Depending upon how many pulse coincidence you want to count, bitmask the other inputs accordingly. 
 
 The **timer** meanwhile is running and every second, it send a poll flag (a high signal). After reception of this poll flag, the au_top module captures the counter values, transmits them using UART and resets the counters.
 
 The **UART** module sends the counter values along with once it reads that the tmr_maxval_temp bit is high, indicating that the timer module has completed counting a second and the data needs to be transmitted sequencially to the PC.
 
-
+The **front end** is managed by Python. It uses the PySerial library for serial communication and the Tkinter library for GUI. The python code is self-explannatory. Feel free to reach out at the e-mail below if you need any clarification!
 
 # Getting Started
 **Prerequisites**
@@ -60,9 +59,9 @@ The **UART** module sends the counter values along with once it reads that the t
 - **FPGA Development Software** : Considering the FPGA is from Xilinx, download Vivado
 
 **Usage**
-- **Synthesize and Generate bit stream** using Vivado after you have opened the project (blinky.xpr) with Vivado
+- **Synthesize and Generate bit stream** using Vivado after you have opened the project (Coincide.xpr) with Vivado
 - **Program** the bitstream to your FPGA development board using Alchitry loader (https://alchitry.com/news/alchitry-loader-v2/). Make note that you need a bin file generated from Vivado
-- Observe the dynamic wave pattern on the LEDs and the alternating custom pattern when the reset button is pressed.
+- You now have a powerful multi-photon coincidence counter ready for applicaiton into your research!
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -70,7 +69,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 # Acknowledgements
 
 - Thanks to the Trinity College Summer Research Program, under which I have been working on FPGA projects under Dr. Davind Branning, PhD.
-- Special mention to SparkFun for PWM wave pattern inspiration.
 
 # Contact
 Feel free to contact me if you run into any problems with the code or if you have any cool suggestions.
