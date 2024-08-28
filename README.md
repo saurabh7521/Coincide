@@ -34,6 +34,10 @@ Below are the files used for the module design with a short description.
 - **''uart_tx.v** : This module takes the pulse counts values of the inputs as well as coincident counts between the inputs and transmits them serially to the PC using UART communciation protocol.
 - **'reset_conditioner.v'** : Module ensuring a clean reset signal.
 
+And below is a flowchart that explains which file instantiates which file, or the file heirarchy. 
+
+<img width="457" alt="image" src="https://github.com/user-attachments/assets/e7113d76-17aa-4176-97a9-47b7e409ebbc">
+
 # Getting Started
 **Prerequisites**
 
