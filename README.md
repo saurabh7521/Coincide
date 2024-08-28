@@ -33,10 +33,25 @@ Below are the files used for the module design with a short description.
 - **'timer.v'** : A custom timer with 1-bit output that is HIGH for one cycle when the timer reaches its maximum value.
 - **''uart_tx.v** : This module takes the pulse counts values of the inputs as well as coincident counts between the inputs and transmits them serially to the PC using UART communciation protocol.
 - **'reset_conditioner.v'** : Module ensuring a clean reset signal.
+- **'au_top.v'** : This module instantiates the ones above and integrates all the pieces for the functioning of the design as described below. 
 
 And below is a flowchart that explains which file instantiates which file, or the file heirarchy. 
 
 <img width="457" alt="image" src="https://github.com/user-attachments/assets/e7113d76-17aa-4176-97a9-47b7e409ebbc">
+
+The au_top module instantiates timer, reset_conditioner, duplciator, uart_tx, and the comparator module. In turn, the duplicator module instantiates edge_detector and pipeline module. 
+
+The raw input is first sent to the **duplicator** module by the au_top module. The duplciator sends the raw input to the pipeline, which cleans the input and outputs a "conditioned" signal that is synchronized with the FPGA clock. The dueplicator then sends this to the edge_detector that detects if the input has the transiiton from 0 to 1, if so, then the edge_detector outputs a high signal for one clock cycle. The duplicator takes this output from edge_detector and duplicates the signal for a specified number of clock cycles. This duplicated output is the final output signal of the duplicated module. 
+
+The outputs of the duplicator is taken, bitmasked and then sent to the **comparator**. The comparator gives a high signal for one clock cycle if all the signals given to it are high.
+
+Once this high signal is detected, an up-counter is incremented by one. This is the counter that counts the pulses as well as the coincidence. To count the coincidence of two pulses, send those two pulses together in the comparator. The current comparator takes four inputs. Depending upon how many pulse coincidence you want to count, bitmask the other inputs accordingly. 
+
+The **timer** meanwhile is running and every second, it send a poll flag (a high signal). After reception of this poll flag, the au_top module captures the counter values, transmits them using UART and resets the counters.
+
+The **UART** module sends the counter values along with once it reads that the tmr_maxval_temp bit is high, indicating that the timer module has completed counting a second and the data needs to be transmitted sequencially to the PC.
+
+
 
 # Getting Started
 **Prerequisites**
