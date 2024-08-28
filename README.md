@@ -20,11 +20,18 @@ Photons that are detected within a certain time window of each other – usually
 - **Interactive Graphical User Interface:** Live updates availbale using on the PC using Python based GUI.
 - **Simple and Robust Communication:** The FPGA hardware communciates with the PC using a universal and simple, yet robust communication protocol- 
 Universal Asynchronous Receiver-Transmitter (UART).
-- **Verilog:** The FPGA is programmed using Verilog- an industry standard programming language for FPGAs, ASICs, etc.
+- **Verilog:** The FPGA is programmed using Verilog- an industry standard programming language for FPGAs, ASICs, etc. with inline comments, thus making it easier for the public to understand the workings of module design.
 
 # Project Structure
-- **'blinky.v'** : The top module integrating the wave generator and LED control logic.
-- **'wave.v** : Module generating the PWM wave pattern for the LEDs.
+
+Below are the files used for the module design with a short description. 
+
+- **'comparator.v'** : This module compares a 4-bit input with a bitmask and increments a counter if all bits are high.
+- **'duplicator.v** : This module detects edges on an input pulse and duplicates the pulse for a user-specified duration. It uses an edge detector and a synchronizer to handle input pulse timing.
+- **'edge_detector.v'** : Detects transitions in an input signal, specifically rising or falling edges, depending on its configuration. When an edge is detected, the module generates a brief pulse on its output (a high input for 1 clock cycle), which is used to trigger subsequent actions in the design.
+- **'pipeline.v'** : This module introduces a configurable delay to an input signal by passing it through a series of flip-flops, effectively synchronizing the raw input signal with the rising edge of the FPGA clock to ensure a clean input signal. This module is crucial as it avoids metastability in the design.
+- **'timer.v'** : A custom timer with 1-bit output that is HIGH for one cycle when the timer reaches its maximum value.
+- **''uart_tx.v** : This module takes the pulse counts values of the inputs as well as coincident counts between the inputs and transmits them serially to the PC using UART communciation protocol.
 - **'reset_conditioner.v'** : Module ensuring a clean reset signal.
 
 # Getting Started
