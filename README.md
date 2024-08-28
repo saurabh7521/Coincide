@@ -20,6 +20,7 @@ Photons that are detected within a certain time window of each other – usually
 - **Interactive Graphical User Interface:** Live updates availbale using on the PC using Python based GUI.
 - **Simple and Robust Communication:** The FPGA hardware communciates with the PC using a universal and simple, yet robust communication protocol- 
 Universal Asynchronous Receiver-Transmitter (UART).
+- **Verilog:** The FPGA is programmed using Verilog- an industry standard programming language for FPGAs, ASICs, etc.
 
 # Project Structure
 - **'blinky.v'** : The top module integrating the wave generator and LED control logic.
