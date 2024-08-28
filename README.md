@@ -1,4 +1,4 @@
-<img width="446" alt="image" src="https://github.com/user-attachments/assets/18c22235-9b0b-4ebc-98d4-9208432772fc"><img width="446" alt="image" src="https://github.com/user-attachments/assets/949dc434-c816-4263-9e2e-5b15e9ca43b8"># FPGA Based Photon Coincidence Counter
+# FPGA Based Photon Coincidence Counter
  An efficient and easy to scale photon coincidence counter that utilises the key features of an FPGA- parallel high speed processing & scalability
 
 This project uses the Xilinx Artix-7 FPGA installed on the Alchitry Au FPGA development board that can be found here: https://alchitry.com/boards/au/
