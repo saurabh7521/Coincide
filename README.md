@@ -16,9 +16,10 @@ Photons that are detected within a certain time window of each other – usually
 
 # Features
 
-- **PWM Wave Pattern:** Generates an intricate wave pattern on 8 LEDs using PWM.
-- **Reset Conditioner:** Ensures a clean reset signal for reliable operation.
-- **LED Control:** Alternates between a custom pattern and the PWM wave pattern based on the reset signal.
+- **High Bandwidth Counting:** The module can count upto 45 million coincident photons per second!
+- **Interactive Graphical User Interface:** Live updates availbale using on the PC using Python based GUI.
+- **Simple and Robust Communication:** The FPGA hardware communciates with the PC using a universal and simple, yet robust communication protocol- 
+Universal Asynchronous Receiver-Transmitter (UART).
 
 # Project Structure
 - **'blinky.v'** : The top module integrating the wave generator and LED control logic.
