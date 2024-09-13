@@ -3,8 +3,7 @@ module au_top (
     input rst_n,        // reset button
     output reg [7:0] led,   // 8 user controllable LEDs
     output wire tx,     // Transmission line
-    input pulseA,         // external pulse input for A
-    input pulseB        //external pulse input for B
+
 );
 
     // Signal declarations
