@@ -22,7 +22,7 @@ module au_top (
     reg [3:0] compB_pins;   // Pins that go into comparator B
     reg [3:0] compAB_pins;   // Pins that go into comparator AB
     reg [31:0] countsA;  // Register to store the count of the A pulses
-    reg [31:0] countsB;  // Register to store the count of the B pulses 
+    reg [31:0] countsB;  // Register to store the count of the B pulses
     reg [31:0] countsAB;
     reg [31:0] counts_tempA;
     reg [31:0] counts_tempB;
@@ -35,7 +35,7 @@ module au_top (
     reg [4:0] byte_counter; // Byte transmission counter
     reg [2:0] state;    // FSM state
     reg tmr_maxval_temp;
-   
+
     // Reset signal is active high
     reset_conditioner reset_cond (
         .clk(clk),           // clock input
@@ -51,7 +51,7 @@ module au_top (
         .length(4'd10),
         .out(outA)
     );
- 
+
     duplicator duplB (
         .clk(clk),
         .rst(rst),
@@ -67,7 +67,7 @@ module au_top (
         .length(4'd10),
         .incr(incrA)
     );
-    
+
     comparator compB (
         .clk(clk),
         .rst(rst),
@@ -75,7 +75,7 @@ module au_top (
         .length(4'd10),
         .incr(incrB)
     );
-    
+
     comparator compAB (
         .clk(clk),
         .rst(rst),
@@ -83,7 +83,7 @@ module au_top (
         .length(4'd10),
         .incr(incrAB)
     );
- 
+
     // Instantiate a timer module
     timer timer_inst (
         .clk(clk),
@@ -91,7 +91,7 @@ module au_top (
         .maxval(tmr_maxval),
         .value(timer_value)
     );
- 
+
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             dupl_pulseA <= 0;
@@ -121,19 +121,19 @@ module au_top (
             compA_pins <= (pins | 4'b1110); // Passing bit masked
             compB_pins <= (pins | 4'b1101);
             compAB_pins <= (pins | 4'b1100);
-            
+
             if (incrA) begin
                 countsA <= countsA + 1; // Increment counts by 1 if incrA bit is high
             end
-            
+
             if (incrB) begin
                 countsB <= countsB + 1; // Increment counts by 1 if incrB bit is high
             end
-            
+
             if (incrAB) begin
                 countsAB <= countsAB + 1; // Increment counts by 1 if incrB bit is high
             end
-           
+
             if (tmr_maxval) begin // If timer is complete
                 //led<= tmr_maxval;
                 tmr_maxval_temp <= tmr_maxval; //Save tmr_maxval flag for initiating transfer
@@ -204,7 +204,7 @@ module au_top (
             endcase
         end
     end
- 
+
     // Instantiating uart_tx module
     uart_tx #(
         .CLK_FREQ(100_000_000),
