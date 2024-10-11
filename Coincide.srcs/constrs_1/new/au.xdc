@@ -16,6 +16,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports pulseA]
 set_property PACKAGE_PIN B1 [get_ports pulseB]
 set_property IOSTANDARD LVCMOS33 [get_ports pulseB]
 
+set_property PACKAGE_PIN T13 [get_ports pulseC]
+set_property IOSTANDARD LVCMOS33 [get_ports pulseC]
+
 set_property PACKAGE_PIN P6 [get_ports rst_n]
 set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
 
