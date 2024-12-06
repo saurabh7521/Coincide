@@ -86,5 +86,3 @@ module uart_rx #(
     new_data = newData;
   end
 endmodule
-
-
