@@ -17,9 +17,9 @@ module au_top (
     wire [14:0] xincr, yincr;    // Vector that stores the increment flags of comparators
     wire tmr_maxval;    // Timer has reached counting
     wire [31:0] timer_value; // Variable to hold timer value
-    reg rx_data;      //Data received for coincidence window
-    reg [7:0] rx_new_data;    //rx new data flag
-    reg window = 0;        //Flag for concidence window, if zero, rx data goes to x, otherwise y
+    wire [7:0] rx_data;      //Data received for coincidence window
+    wire rx_new_data;    //rx new data flag
+    reg window = 1'b0;        //Flag for concidence window, if zero, rx data goes to x, otherwise y
     reg [7:0] x_window = 8'd10; //x coincidence window, 10 clock cycles by default
     reg [7:0] y_window = 8'd20; //y coincidence window, 20 clock cycles by default
 
@@ -446,7 +446,7 @@ module au_top (
 
 
                 poll_flag <= 1;  // Data ready flag to execute the transmission code below
-                led <= ~led;    //Comlement led to check for duration of a second
+                led <= x_window;    //Comlement led to check for duration of a second
             end
 
             new_data <= 0;  // Default state
@@ -625,7 +625,7 @@ module au_top (
                 3'b010: begin // Wait for transmission to complete
                     if (!busy) begin
                         byte_counter <= byte_counter + 1;
-                        if (byte_counter == 7'b1000000) begin
+                        if (byte_counter == 7'b1111100) begin
                             byte_counter <= 0;
                             state <= 3'b011;  // Move to clean up state
                         end else begin
