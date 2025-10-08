@@ -19,7 +19,15 @@ module comparator (
 
     // Counter Register for tracking sleep duration
     reg [3:0] ctr;
-
+    reg [3:0] length_reg;
+    
+    always @(posedge clk or posedge rst) begin
+    if (rst)
+        length_reg <= 0;
+    else
+        length_reg <= length - 1;
+    end
+    
     // State and Counter Transition Logic
     always @(posedge clk or posedge rst) begin
         incr <= 0; // Default output to LOW each clock cycle
@@ -38,7 +46,7 @@ module comparator (
                 end
 
                 SLEEP: begin
-                    if (ctr == length - 1) begin // If sleep duration is complete
+                    if (ctr == length_reg) begin // If sleep duration is complete
                         ctr <= 0;    // Reset counter
                         state <= COMPARE; // Return to COMPARE state
                     end else begin
