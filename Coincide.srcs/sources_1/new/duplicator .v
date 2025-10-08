@@ -1,3 +1,4 @@
+
 // This module detects edges on an input pulse and duplicates the pulse for a user-specified duration.
 // It uses an edge detector and a synchronizer to handle input pulse timing, managing state transitions 
 // and pulse duplication with a simple state machine controlled by a clock and reset signal.
@@ -34,7 +35,16 @@ module duplicator (
     // State and Counter Registers
     reg [1:0] state;     // Combined state variable
     reg [3:0] ctr;       // Single counter for pulse duration
-
+    reg [3:0] length_reg;
+    
+    always @(posedge clk or posedge rst) begin
+    if (rst)
+        length_reg <= 0;
+    else
+        length_reg <= length - 1;
+    end
+    
+    
     // State Machine and Output Logic
     always @(posedge clk or posedge rst) begin
         if (rst) begin
@@ -54,7 +64,7 @@ module duplicator (
                 end
 
                 PULSE: begin
-                    if (ctr == length - 1) begin
+                    if (ctr == length_reg) begin
                         out <= 0;       // Set output LOW after pulse duration
                         state <= LISTEN;// Return to LISTEN state
                     end else begin
@@ -68,4 +78,3 @@ module duplicator (
         end
     end
 endmodule
-
