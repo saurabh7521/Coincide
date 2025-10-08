@@ -16,7 +16,7 @@ Photons that are detected within a certain time window of each other – usually
 
 # Features
 
-- **High Bandwidth Counting:** The module can count upto 45 million coincident photons per second!
+- **High Bandwidth Counting:** The module can count upto 100 million coincident photons per second!
 - **Interactive Graphical User Interface:** Live updates availbale using on the PC using Python based GUI.
 - **Simple and Robust Communication:** The FPGA hardware communciates with the PC using a universal and simple, yet robust communication protocol- 
 Universal Asynchronous Receiver-Transmitter (UART).
@@ -31,7 +31,7 @@ Below are the files used for the module design with a short description.
 - **'edge_detector.v'** : Detects transitions in an input signal, specifically rising or falling edges, depending on its configuration. When an edge is detected, the module generates a brief pulse on its output (a high input for 1 clock cycle), which is used to trigger subsequent actions in the design.
 - **'pipeline.v'** : This module introduces a configurable delay to an input signal by passing it through a series of flip-flops, effectively synchronizing the raw input signal with the rising edge of the FPGA clock to ensure a clean input signal. This module is crucial as it avoids metastability in the design.
 - **'timer.v'** : A custom timer with 1-bit output that is HIGH for one cycle when the timer reaches its maximum value.
-- **''uart_tx.v** : This module takes the pulse counts values of the inputs as well as coincident counts between the inputs and transmits them serially to the PC using UART communciation protocol.
+- **''uart_tx.v** : This module takes the pulse counts values of the inputs as well as coincident counts between the inputs and transmits them serially to the PC using UART communciation protocol. The 24-bit numbers are transmitted ten times every second. The PC sums up the 10 numbers to give a count per second. Additionally, this UART protocol implements a handshaking mechanism to avoid jitter.
 - **'reset_conditioner.v'** : Module ensuring a clean reset signal.
 - **'au_top.v'** : This module instantiates the ones above and integrates all the pieces for the functioning of the design as described below. 
 
