@@ -73,4 +73,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 # Contact
 Feel free to contact me if you run into any problems with the code or if you have any cool suggestions.
 
-**E-mail:** saurabh.tiwari@trincoll.edu
+**E-mail:** saurabh.tiwari@trincoll.edu, stiwari95@gatech.edu
