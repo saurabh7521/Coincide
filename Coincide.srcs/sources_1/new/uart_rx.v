@@ -1,6 +1,6 @@
 module uart_rx #(
-    parameter CLK_FREQ = 100_000_000,  // clock frequency
-    parameter BAUD = 9600         // desired baud rate
+    parameter CLK_FREQ = 300_000_000,  // clock frequency
+    parameter BAUD = 14400         // desired baud rate
 )(
     input clk,            // clock input
     input rst,            // reset active high
@@ -86,3 +86,5 @@ module uart_rx #(
     new_data = newData;
   end
 endmodule
+
+
