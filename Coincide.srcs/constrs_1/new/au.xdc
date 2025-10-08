@@ -6,9 +6,12 @@ set_property BITSTREAM.CONFIG.SPI_32BIT_ADDR NO [current_design]
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 1 [current_design]
 set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
 
-create_clock -period 10.000 -name clk -waveform {0.000 5.000} [get_ports clk]
-set_property PACKAGE_PIN N14 [get_ports clk]
-set_property IOSTANDARD LVCMOS33 [get_ports clk]
+create_clock -period 10.000 -name clk_100 -waveform {0.000 5.000} [get_ports clk_100]
+set_property PACKAGE_PIN N14 [get_ports clk_100]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_100]
+
+set_property PACKAGE_PIN K2 [get_ports clk_10]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_10]
 
 set_property PACKAGE_PIN T10 [get_ports pulseA]
 set_property IOSTANDARD LVCMOS33 [get_ports pulseA]
@@ -18,6 +21,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports pulseB]
 
 set_property PACKAGE_PIN T13 [get_ports pulseC]
 set_property IOSTANDARD LVCMOS33 [get_ports pulseC]
+
+set_property PACKAGE_PIN D3 [get_ports pulseD]
+set_property IOSTANDARD LVCMOS33 [get_ports pulseD]
 
 set_property PACKAGE_PIN P6 [get_ports rst_n]
 set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
